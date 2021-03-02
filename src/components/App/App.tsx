@@ -1,12 +1,16 @@
-import { lazy as lazyComponentImport, Suspense } from 'react';
+import { lazy as lazyComponentImport, Suspense as ReactSuspense } from 'react';
+
+import './App.scss';
 
 const Main = lazyComponentImport(() => import('../Main/MainContainer'));
 
 const App: React.FC = () => {
     return (
-        <Suspense fallback={<>загрузка...</>}>
-            <Main />
-        </Suspense>
+        <div className="app">
+            <ReactSuspense fallback={<>загрузка...</>}>
+                <Main />
+            </ReactSuspense>
+        </div>
     );
 };
 
