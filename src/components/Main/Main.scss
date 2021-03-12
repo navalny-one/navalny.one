@@ -17,13 +17,14 @@
     font-size: 0;
 
     &__counter {
+        $c: &;
+
         text-align: center;
         color: #fff;
 
         font-size: 22px;
 
-        &__head,
-        &__dates {
+        &__head {
             font-size: 1.5em;
         }
 
@@ -38,6 +39,10 @@
 
                 line-height: 1;
 
+                &[hidden] {
+                    display: none;
+                }
+
                 span {
                     display: block;
 
@@ -45,6 +50,14 @@
                         font-size: 2.5em;
                     }
                 }
+            }
+        }
+
+        &--left {
+            margin-top: 25px;
+
+            #{$c}__head {
+                font-size: 1.25em;
             }
         }
     }
@@ -75,6 +88,18 @@
 
             & > * {
                 vertical-align: middle;
+            }
+        }
+    }
+
+    @media screen and (max-width: 475px) {
+        &__counter {
+            font-size: 18px;
+
+            &__dates {
+                div {
+                    margin-top: 15px;
+                }
             }
         }
     }

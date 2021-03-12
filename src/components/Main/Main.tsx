@@ -4,51 +4,92 @@ import type { TimeDiffType } from './logic/getTimeDiff';
 import './Main.scss';
 
 type PropsType = {
-    TimeDiff: TimeDiffType | undefined;
+    PastTimeDiff: TimeDiffType | undefined;
+    LeftTimeDiff: TimeDiffType | undefined;
 };
 
 const Main: React.FC<PropsType> = props => {
-    const { TimeDiff } = props;
+    const { PastTimeDiff, LeftTimeDiff } = props;
 
     return (
         <div className="main">
             <div aria-hidden="true"></div>
-            <div className="main__counter">
-                <div className="main__counter__head">Алексею Навальному осталось сидеть</div>
-                <div className="main__counter__dates">
-                    {TimeDiff ? (
-                        <>
-                            <div hidden={TimeDiff.years === 0}>
-                                <span>{TimeDiff.years}</span>
-                                <span>{numberDeclension(TimeDiff.years, ['год', 'года', 'лет'], true)}</span>
-                            </div>
+            <div className="main__counters">
+                <div className="main__counter">
+                    <div className="main__counter__head">Алексей Навальный сидит уже</div>
+                    <div className="main__counter__dates">
+                        {PastTimeDiff ? (
+                            <>
+                                <div hidden={PastTimeDiff.years === 0}>
+                                    <span>{PastTimeDiff.years}</span>
+                                    <span>{numberDeclension(PastTimeDiff.years, ['год', 'года', 'лет'], true)}</span>
+                                </div>
 
-                            <div hidden={TimeDiff.months === 0}>
-                                <span>{TimeDiff.months}</span>
-                                <span>{numberDeclension(TimeDiff.months, ['месяц', 'месяца', 'месяцев'], true)}</span>
-                            </div>
+                                <div hidden={PastTimeDiff.months === 0}>
+                                    <span>{PastTimeDiff.months}</span>
+                                    <span>{numberDeclension(PastTimeDiff.months, ['месяц', 'месяца', 'месяцев'], true)}</span>
+                                </div>
 
-                            <div hidden={TimeDiff.days === 0}>
-                                <span>{TimeDiff.days}</span>
-                                <span>{numberDeclension(TimeDiff.days, ['день', 'дня', 'дней'], true)}</span>
-                            </div>
+                                <div hidden={PastTimeDiff.days === 0}>
+                                    <span>{PastTimeDiff.days}</span>
+                                    <span>{numberDeclension(PastTimeDiff.days, ['день', 'дня', 'дней'], true)}</span>
+                                </div>
 
-                            <div>
-                                <span>{TimeDiff.hours}</span>
-                                <span>{numberDeclension(TimeDiff.hours, ['час', 'часа', 'часов'], true)}</span>
-                            </div>
+                                <div>
+                                    <span>{PastTimeDiff.hours}</span>
+                                    <span>{numberDeclension(PastTimeDiff.hours, ['час', 'часа', 'часов'], true)}</span>
+                                </div>
 
-                            <div>
-                                <span>{TimeDiff.minutes}</span>
-                                <span>{numberDeclension(TimeDiff.minutes, ['минута', 'минуты', 'минут'], true)}</span>
-                            </div>
+                                <div>
+                                    <span>{PastTimeDiff.minutes}</span>
+                                    <span>{numberDeclension(PastTimeDiff.minutes, ['минута', 'минуты', 'минут'], true)}</span>
+                                </div>
 
-                            <div>
-                                <span>{TimeDiff.seconds}</span>
-                                <span>{numberDeclension(TimeDiff.seconds, ['секунда', 'секунды', 'секунд'], true)}</span>
-                            </div>
-                        </>
-                    ) : null}
+                                <div>
+                                    <span>{PastTimeDiff.seconds}</span>
+                                    <span>{numberDeclension(PastTimeDiff.seconds, ['секунда', 'секунды', 'секунд'], true)}</span>
+                                </div>
+                            </>
+                        ) : null}
+                    </div>
+                </div>
+                <div className="main__counter main__counter--left">
+                    <div className="main__counter__head">осталось сидеть</div>
+                    <div className="main__counter__dates">
+                        {LeftTimeDiff ? (
+                            <>
+                                <div hidden={LeftTimeDiff.years === 0}>
+                                    <span>{LeftTimeDiff.years}</span>
+                                    <span>{numberDeclension(LeftTimeDiff.years, ['год', 'года', 'лет'], true)}</span>
+                                </div>
+
+                                <div hidden={LeftTimeDiff.months === 0}>
+                                    <span>{LeftTimeDiff.months}</span>
+                                    <span>{numberDeclension(LeftTimeDiff.months, ['месяц', 'месяца', 'месяцев'], true)}</span>
+                                </div>
+
+                                <div hidden={LeftTimeDiff.days === 0}>
+                                    <span>{LeftTimeDiff.days}</span>
+                                    <span>{numberDeclension(LeftTimeDiff.days, ['день', 'дня', 'дней'], true)}</span>
+                                </div>
+
+                                <div>
+                                    <span>{LeftTimeDiff.hours}</span>
+                                    <span>{numberDeclension(LeftTimeDiff.hours, ['час', 'часа', 'часов'], true)}</span>
+                                </div>
+
+                                <div>
+                                    <span>{LeftTimeDiff.minutes}</span>
+                                    <span>{numberDeclension(LeftTimeDiff.minutes, ['минута', 'минуты', 'минут'], true)}</span>
+                                </div>
+
+                                <div>
+                                    <span>{LeftTimeDiff.seconds}</span>
+                                    <span>{numberDeclension(LeftTimeDiff.seconds, ['секунда', 'секунды', 'секунд'], true)}</span>
+                                </div>
+                            </>
+                        ) : null}
+                    </div>
                 </div>
             </div>
             <div className="main__link">

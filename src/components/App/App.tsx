@@ -7,7 +7,7 @@ const Main = lazyComponentImport(() => import('../Main/MainContainer'));
 const App: React.FC = () => {
     return (
         <div className="app">
-            <ReactSuspense fallback={<>загрузка...</>}>
+            <ReactSuspense fallback={null}>
                 <Main />
             </ReactSuspense>
         </div>

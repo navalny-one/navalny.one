@@ -6,13 +6,17 @@ import type { TimeDiffType } from './logic/getTimeDiff';
 import Main from './Main';
 
 const MainContainer: React.FC = () => {
-    // const StartDate = '2021-02-01T19:00:00Z'; // 2 февраля 2021 гоа
+    const StartDate = '2021-02-01T19:00:00Z'; // 2 февраля 2021 гоа
     const EndDate = '2023-08-01T19:00:00.000Z'; // 2 августа 2023 года
 
-    const [TimeDiff, setTimeDiff] = useState<TimeDiffType | undefined>();
+    const [PastTimeDiff, setPastTimeDiff] = useState<TimeDiffType | undefined>();
+    const [LeftTimeDiff, setLeftTimeDiff] = useState<TimeDiffType | undefined>();
 
     useEffect(() => {
-        const setter = () => setTimeDiff(getTimeDiff(new Date().toISOString(), EndDate));
+        const setter = () => {
+            setPastTimeDiff(getTimeDiff(StartDate, new Date().toISOString()));
+            setLeftTimeDiff(getTimeDiff(new Date().toISOString(), EndDate));
+        };
 
         setter();
 
@@ -23,7 +27,7 @@ const MainContainer: React.FC = () => {
         };
     }, []);
 
-    return <Main {...{ TimeDiff }} />;
+    return <Main {...{ PastTimeDiff, LeftTimeDiff }} />;
 };
 
 export default MainContainer;
